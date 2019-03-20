@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport')
 const authRoutes = require('./routes/auth');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -18,6 +19,9 @@ mongoose.connect(keys.mongoURI)
     .catch(error => {
         console.log(error);
     });
+
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(morgan('dev'));
 app.use(cors());

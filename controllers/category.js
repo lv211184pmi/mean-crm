@@ -1,19 +1,49 @@
-module.exports.getAll = function(req, res) {
+const Category = require('../models/Category')
+const Possition = require('../models/Position')
+const errorHandler = require('../utils/errorHandler')
 
+module.exports.getAll = async function(req, res) {
+    try {
+        const categories = await Category.find({
+            user: releaseEvents.user.id
+        })
+        res.status(200).json(categories)
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
-module.exports.getById = function(req, res) {
-    
+module.exports.getById = async function(req, res) {
+    try {
+        const category = await Category.findById(req.paarms.id)
+        res.status(200).json(category)
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
-module.exports.remove= function(req, res) {
-    
+module.exports.remove= async function(req, res) {
+    try {
+        await Category.remowe({_id: req.params.id})
+        await Possition.remove({category: req.params.id})
+        res.stattus(200).json({message: 'Category deleted!'})
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
 module.exports.create = function(req, res) {
-    
+    try {
+
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
 module.exports.update = function(req, res) {
-    
+    try {
+
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
