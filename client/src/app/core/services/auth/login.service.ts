@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../models/auth/user.model';
 import { AuthService } from './auth.service';
-import { AlertService } from '../alerts/alert.service';
+import { MaterialService } from '../material-utils/material.service';
 
 declare interface Token {
   token: string;
@@ -16,7 +16,7 @@ declare interface Token {
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   private host = environment.host;
-  private alert = AlertService;
+  private alert = MaterialService.alert;
 
   constructor(
     private http: HttpClient,
@@ -31,7 +31,7 @@ export class LoginService {
         this.router.navigate(['/overview']);
       }),
       catchError(err => {
-        this.alert.message(err.error.message);
+        this.alert(err.error.message);
         return of(err);
       }),
     );
@@ -45,7 +45,7 @@ export class LoginService {
         });
       }),
       catchError(err => {
-        this.alert.message(err.error.message);
+        this.alert(err.error.message);
         return of(err);
       }),
     );

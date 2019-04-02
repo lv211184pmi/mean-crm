@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { LoginService } from '../../../core/services/auth/login.service';
-import { AlertService } from 'src/app/core/services/alerts/alert.service';
+import { MaterialService } from '../../../core/services/material-utils/material.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ import { AlertService } from 'src/app/core/services/alerts/alert.service';
 export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   private sub: Subscription;
-  private alert = AlertService;
+  private alert = MaterialService.alert;
 
   constructor(
     private fb: FormBuilder,
@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        this.alert.message('Now you can log in');
+        this.alert('Now you can log in');
       } else if (params['accessDenied']) {
-        this.alert.message('Нou must first log in');
+        this.alert('Нou must first log in');
       } else if (params['sessionExpired']) {
-        this.alert.message('Please log in again');
+        // this.alert.message('Please log in again');
       }
     });
   }

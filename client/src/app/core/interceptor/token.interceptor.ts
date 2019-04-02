@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()

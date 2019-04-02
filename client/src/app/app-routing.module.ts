@@ -6,11 +6,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth/login',
-  },
-  {
-    path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'auth',
   },
   {
     path: 'auth',
