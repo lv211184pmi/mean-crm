@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  AbstractControl,
+} from '@angular/forms';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
@@ -15,8 +20,16 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.regForm = this.fb.group({
       email: [null, Validators.required],
-      password: [null, Validators.required],
+      password: [null, [Validators.required],
     });
+  }
+
+  get email(): AbstractControl {
+    return this.regForm.get('email');
+  }
+
+  get pass(): AbstractControl {
+    return this.regForm.get('password');
   }
 
   onSubmit(values) {

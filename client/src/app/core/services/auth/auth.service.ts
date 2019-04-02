@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { User } from '../../models/auth/user.model';
 
 @Injectable()
 export class AuthService {
@@ -8,11 +9,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(data) {
-    return this.http.post(`${this.host}/api/auth/login`, data);
+  login(user: User) {
+    return this.http.post(`${this.host}/api/auth/login`, user);
   }
 
-  registration(data) {
-    return this.http.post(`${this.host}/api/auth/register`, data);
+  registration(user: User) {
+    return this.http.post(`${this.host}/api/auth/register`, user);
   }
 }
