@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { MaterialService } from 'src/app/core/services/material-utils/material.service';
+import { MaterialService } from '../../../core/services/material-utils/material.service';
 
 @Component({
   selector: 'app-footer-btn',
