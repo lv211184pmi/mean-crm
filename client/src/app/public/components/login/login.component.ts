@@ -1,26 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { LoginService } from '../../../core/services/auth/login.service';
+import { AlertService } from 'src/app/core/services/alerts/alert.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
+  private sub: Subscription;
+  private alert = AlertService;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private route: ActivatedRoute,
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required],
+      email: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+    });
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['registered']) {
+        this.alert.message('Now you can log in');
+      } else if (params['accessDenied']) {
+        this.alert.message('Нou must first log in');
+      } else if (params['sessionExpired']) {
+        this.alert.message('Please log in again');
+      }
     });
   }
 
@@ -33,9 +53,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(values) {
-    console.log('values: ', values);
-    this.authService.login(values).subscribe(res => {
-      console.log(res);
-    });
+    this.loginForm.disable();
+    this.sub = this.loginService
+      .login(values)
+      .subscribe(() => this.loginForm.enable(), () => this.loginForm.enable());
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }
