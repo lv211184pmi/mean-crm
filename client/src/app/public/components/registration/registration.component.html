@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="auth-block">
+    <form
+        class="card"
+        [formGroup]="regForm"
+        (ngSubmit)="onSubmit(regForm.value)">
+        <div class="card-content">
+            <span class="card-title">Создать аккаунт</span>
+            <div class="input-field">
+                <input
+                    formControlName="email"
+                    id="email"
+                    type="email"
+                    required>
+                <label for="email">Email:</label>
+            </div>
+            <div class="input-field">
+                <input
+                    formControlName="password"
+                    id="password"
+                    type="password"
+                    required>
+                <label for="password">Пароль:</label>
+            </div>
+        </div>
+        <div class="card-action">
+            <button
+                type="submit"
+                [disabled]="regForm.invalid"
+                class="modal-action btn waves-effect">
+                Создать
+            </button>
+        </div>
+    </form>
+</div>
