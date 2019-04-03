@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { MaterialService } from '../material-utils/material.service';
-import { Category } from '../../models/category/category.model';
+import { Category } from '../../models/assortment/category.model';
 import { Message } from '../../models/message.model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,10 +15,11 @@ export class CategoryService {
   private host = `${environment.host}/api`;
   private alert = MaterialService.alert;
 
-  public getAllCategories(): Observable<Category[] | HttpErrorResponse> {
-    return this.http
-      .get<Category[]>(`${this.host}/category`)
-      .pipe(catchError(err => this.errorHandle(err)));
+  public getAllCategories(): Observable<Category[] | any> {
+    return this.http.get<Category[]>(`${this.host}/category`).pipe(
+      map((categories: Category[]) => categories),
+      catchError(err => this.errorHandle(err)),
+    );
   }
 
   public getCategoryById(id: string): Observable<Category> {

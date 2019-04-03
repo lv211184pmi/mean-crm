@@ -7,10 +7,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 
-import { CategoryService } from '../../../../../core/services/category/category.service';
+import { CategoryService } from '../../../../../core/services/assortment/category.service';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Category } from 'src/app/core/models/category/category.model';
+import { Category } from 'src/app/core/models/assortment/category.model';
 import { MaterialService } from 'src/app/core/services/material-utils/material.service';
 
 @Component({
@@ -22,8 +22,8 @@ export class CategoryFormComponent implements OnInit {
   public isNew: boolean = true;
   public form: FormGroup;
   public imagePreview: string | ArrayBuffer = '';
+  public category: Category;
   private image: File;
-  private category: Category;
 
   @ViewChild('inputFile') inputRef: ElementRef;
   constructor(
