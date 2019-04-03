@@ -3,7 +3,7 @@ import { ElementRef } from '@angular/core';
 declare const M;
 
 export class MaterialService {
-  static alert(message: string) {
+  static alert(message: string = 'Something went wrong!') {
     M.toast({ html: message });
   }
 
