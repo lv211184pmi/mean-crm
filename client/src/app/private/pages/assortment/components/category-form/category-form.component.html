@@ -5,7 +5,9 @@
         {{ isNew ? 'Add' : 'Update' }} category
     </h4>
     <span>
-        <button class="btn btn-small red">
+        <button
+            class="btn btn-small red"
+            (click)="removeCategory()">
             <i class="material-icons">delete</i>
         </button>
     </span>
@@ -30,8 +32,15 @@
         </div>
 
         <div>
+            <input
+                type="file"
+                class="d-none"
+                (change)="onFileUpload($event)"
+                #inputFile>
             <button
                 type="button"
+                (click)="triggerClick()"
+                [disabled]="form.disabled"
                 class="waves-effect waves-light btn orange lighten-2 mb2">
                 <i class="material-icons left">backup</i>
                 Upload image
@@ -50,9 +59,9 @@
 
     <div class="col s12 l4 center">
         <img
-            class="responsive-img"
-            style="height: 200px"
-            src="cake.jpg">
+            *ngIf="imagePreview"
+            class="responsive-img h200"
+            [src]="imagePreview">
     </div>
 </div>
 

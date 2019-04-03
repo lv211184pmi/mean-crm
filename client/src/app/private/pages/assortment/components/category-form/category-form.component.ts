@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import {
   FormGroup,
@@ -11,6 +11,7 @@ import { CategoryService } from '../../../../../core/services/category/category.
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Category } from 'src/app/core/models/category/category.model';
+import { MaterialService } from 'src/app/core/services/material-utils/material.service';
 
 @Component({
   selector: 'app-category-form',
@@ -20,7 +21,11 @@ import { Category } from 'src/app/core/models/category/category.model';
 export class CategoryFormComponent implements OnInit {
   public isNew: boolean = true;
   public form: FormGroup;
+  public imagePreview: string | ArrayBuffer = '';
+  private image: File;
+  private category: Category;
 
+  @ViewChild('inputFile') inputRef: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
@@ -34,6 +39,7 @@ export class CategoryFormComponent implements OnInit {
   }
 
   private getCategory() {
+    this.form.disable();
     this.route.params
       .pipe(
         switchMap((params: Params) => {
@@ -46,16 +52,67 @@ export class CategoryFormComponent implements OnInit {
       )
       .subscribe((category: Category) => {
         if (category) {
+          this.category = category;
           this.name.patchValue(category.name);
+          this.imagePreview = category.imageSrc;
+          MaterialService.updateTextInputs();
         }
+        this.form.enable();
       });
   }
 
-  get name(): AbstractControl {
+  public get name(): AbstractControl {
     return this.form.get('name');
   }
 
-  onSubmit(value) {
-    console.log('value: ', value);
+  public triggerClick() {
+    this.inputRef.nativeElement.click();
+  }
+
+  public onFileUpload(event) {
+    const file = event.target.files[0];
+    this.image = file;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  public onSubmit(value) {
+    this.form.disable();
+
+    let submit$;
+
+    if (this.isNew) {
+      submit$ = this.categoryService.createCategory(value.name, this.image);
+    } else {
+      submit$ = this.categoryService.updateCategory(
+        this.category._id,
+        value.name,
+        this.image,
+      );
+    }
+
+    submit$.subscribe(
+      (category: Category) => {
+        this.category = category;
+        this.form.enable();
+      },
+      err => this.form.enable(),
+    );
+  }
+
+  public removeCategory() {
+    const decision = window.confirm(
+      `Are you sure you want to delete the category ${this.category.name}`,
+    );
+
+    if (decision) {
+      this.categoryService.removeCategory(this.category._id).subscribe();
+    }
   }
 }

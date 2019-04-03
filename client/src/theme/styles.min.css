@@ -174,3 +174,10 @@ input.ng-touched.ng-invalid {
   border-bottom: 1px solid #f44336;
   box-shadow: 0 1px 0 0 #f44336;
 }
+.d-none {
+  display: none;
+}
+
+.h200 {
+  max-height: 200px !important;
+}
