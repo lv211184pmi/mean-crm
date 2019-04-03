@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -9,7 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PublicComponent } from './public.component';
-import { AuthService } from '../core/services/auth/auth.service';
 
 @NgModule({
   imports: [
@@ -17,8 +15,7 @@ import { AuthService } from '../core/services/auth/auth.service';
     PublicRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [
     LoginComponent,
@@ -26,6 +23,5 @@ import { AuthService } from '../core/services/auth/auth.service';
     HeaderComponent,
     PublicComponent,
   ],
-  providers: [AuthService],
 })
 export class PublicModule {}

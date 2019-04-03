@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private host = environment.host;
+  private token: string = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router) {}
 
-  login(data) {
-    return this.http.post(`${this.host}/api/auth/login`, data);
+  public setToken(token: string): string {
+    localStorage.setItem('token', token);
+    return (this.token = token);
   }
 
-  registration(data) {
-    return this.http.post(`${this.host}/api/auth/register`, data);
+  public getToken(): string {
+    return this.token;
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.token;
+  }
+
+  public logout() {
+    this.setToken(null);
+    localStorage.clear();
+    this.router.navigate(['/auth/login']);
   }
 }

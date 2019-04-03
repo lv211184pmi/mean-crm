@@ -1,0 +1,21 @@
+<ul class="sidenav sidenav-fixed a-sidenav">
+    <h4>Newborn</h4>
+    <li
+        *ngFor="let link of links"
+        class="bold"
+        routerLinkActive="active">
+        <a
+            [routerLink]="[link?.url]"
+            class="waves-effect waves-orange">
+            {{ link?.name }}
+        </a>
+    </li>
+    <li class="bold last">
+        <a
+            href="#"
+            (click)="$event.preventDefault(); logout()"
+            class="waves-effect waves-orange">
+            Log out
+        </a>
+    </li>
+</ul>
