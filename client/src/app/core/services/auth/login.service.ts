@@ -15,7 +15,7 @@ declare interface Token {
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
-  private host = environment.host;
+  private host = `${environment.host}/api`;
   private alert = MaterialService.alert;
 
   constructor(
@@ -25,7 +25,7 @@ export class LoginService {
   ) {}
 
   login(user: User): Observable<Token> {
-    return this.http.post<Token>(`${this.host}/api/auth/login`, user).pipe(
+    return this.http.post<Token>(`${this.host}/auth/login`, user).pipe(
       map(({ token }) => {
         this.auth.setToken(token);
         this.router.navigate(['/overview']);
@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   registration(user: User) {
-    return this.http.post(`${this.host}/api/auth/register`, user).pipe(
+    return this.http.post(`${this.host}/auth/register`, user).pipe(
       tap(() => {
         this.router.navigate(['/auth/login'], {
           queryParams: { registered: true },

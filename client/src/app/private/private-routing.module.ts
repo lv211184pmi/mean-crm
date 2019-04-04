@@ -7,6 +7,7 @@ import { AnalystComponent } from './pages/analyst/analyst.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { AddOrderComponent } from './pages/add-order/add-order.component';
 import { AssortmentComponent } from './pages/assortment/assortment.component';
+import { CategoryFormComponent } from './pages/assortment/components/category-form/category-form.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,14 @@ const routes: Routes = [
       {
         path: 'categories',
         component: AssortmentComponent,
+      },
+      {
+        path: 'categories/new',
+        component: CategoryFormComponent,
+      },
+      {
+        path: 'categories/:id',
+        component: CategoryFormComponent,
       },
     ],
   },
