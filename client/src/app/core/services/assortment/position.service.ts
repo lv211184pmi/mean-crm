@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -32,17 +32,19 @@ export class PositionService {
     );
   }
 
-  public updateCategory(position: Position, id: string): Observable<Position> {
-    return this.http.patch<any>(`${this.host}/position/${id}`, position).pipe(
-      map((pos: Position) => {
-        this.alert('Position was updated');
-        return pos;
-      }),
-      catchError(err => this.errorHandle(err)),
-    );
+  public updatePosition(position: Position): Observable<Position> {
+    return this.http
+      .patch<Position>(`${this.host}/position/${position._id}`, position)
+      .pipe(
+        map((pos: Position) => {
+          this.alert('Position was updated');
+          return pos;
+        }),
+        catchError(err => this.errorHandle(err)),
+      );
   }
 
-  public removeCategory(id: string): Observable<Message> {
+  public removePosition(id: string): Observable<Message> {
     return this.http.delete<Message>(`${this.host}/position/${id}`).pipe(
       map((message: Message) => {
         this.alert(message.message);

@@ -5,7 +5,7 @@ const errorHandler = require('../utils/errorHandler')
 module.exports.getAll = async function(req, res) {
     try {
         const categories = await Category.find({
-            user: releaseEvents.user.id
+            user: req.user.id
         })
         res.status(200).json(categories)
     } catch (e) {
@@ -15,7 +15,7 @@ module.exports.getAll = async function(req, res) {
 
 module.exports.getById = async function(req, res) {
     try {
-        const category = await Category.findById(req.paarms.id)
+        const category = await Category.findById(req.params.id)
         res.status(200).json(category)
     } catch (e) {
         errorHandler(res, e)
@@ -24,9 +24,9 @@ module.exports.getById = async function(req, res) {
 
 module.exports.remove= async function(req, res) {
     try {
-        await Category.remowe({_id: req.params.id})
+        await Category.remove({_id: req.params.id})
         await Possition.remove({category: req.params.id})
-        res.stattus(200).json({message: 'Category deleted!'})
+        res.status(200).json({message: 'Category deleted!'})
     } catch (e) {
         errorHandler(res, e)
     }
