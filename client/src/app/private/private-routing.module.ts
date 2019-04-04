@@ -5,7 +5,6 @@ import { PrivateComponent } from './private.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { AnalystComponent } from './pages/analyst/analyst.component';
 import { HistoryComponent } from './pages/history/history.component';
-import { AddOrderComponent } from './pages/add-order/add-order.component';
 import { AssortmentComponent } from './pages/assortment/assortment.component';
 import { CategoryFormComponent } from './pages/assortment/components/category-form/category-form.component';
 
@@ -32,8 +31,8 @@ const routes: Routes = [
         component: HistoryComponent,
       },
       {
-        path: 'add-order',
-        component: AddOrderComponent,
+        path: 'order',
+        loadChildren: './pages/order/order.module#OrderModule',
       },
       {
         path: 'categories',
