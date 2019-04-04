@@ -28,8 +28,9 @@ module.exports.create = async function(req, res) {
 }
 
 module.exports.remove = async function(req, res) {
+    const _id = req.params.id;
     try {
-        await Possition.remove({_id: req.params.id})
+        await Possition.remove({_id})
         res.status(200).json({
             message: 'Position was removed!'
         })
