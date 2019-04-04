@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/core/services/assortment/category.service';
-import { Category } from 'src/app/core/models/assortment/category.model';
 import { Observable } from 'rxjs';
+
+import { CategoryService } from '../../../core/services/assortment/category.service';
+import { Category } from '../../../core/models/assortment/category.model';
 
 @Component({
   selector: 'app-assortment',

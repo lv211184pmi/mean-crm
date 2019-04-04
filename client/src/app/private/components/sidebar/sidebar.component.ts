@@ -11,7 +11,7 @@ export class SidebarComponent {
     { url: '/overview', name: 'Overview' },
     { url: '/analyst', name: 'Analyst' },
     { url: '/history', name: 'History' },
-    { url: '/add-order', name: 'Add order' },
+    { url: '/order', name: 'Add order' },
     { url: '/categories', name: 'Assortment' },
   ];
 

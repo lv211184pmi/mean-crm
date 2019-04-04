@@ -6,12 +6,12 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-
-import { CategoryService } from '../../../../../core/services/assortment/category.service';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Category } from 'src/app/core/models/assortment/category.model';
-import { MaterialService } from 'src/app/core/services/material-utils/material.service';
+
+import { MaterialService } from '../../../../../core/services/material-utils/material.service';
+import { CategoryService } from '../../../../../core/services/assortment/category.service';
+import { Category } from '../../../../../core/models/assortment/category.model';
 
 @Component({
   selector: 'app-category-form',
