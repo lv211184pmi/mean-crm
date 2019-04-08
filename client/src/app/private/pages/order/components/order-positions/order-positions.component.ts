@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 import { PositionService } from './../../../../../core/services/assortment/position.service';
 import { Position } from './../../../../../core/models/assortment/position.model';
-import { OrderHelperService } from 'src/app/core/services/order/order-helper.service';
-import { MaterialService } from 'src/app/core/services/material-utils/material.service';
+import { OrderHelperService } from '../../../../../core/services/order/order-helper.service';
+import { MaterialService } from '../../../../../core/services/material-utils/material.service';
 
 @Component({
   selector: 'app-order-positions',
