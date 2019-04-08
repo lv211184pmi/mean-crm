@@ -12,15 +12,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'categories',
-      },
-      {
-        path: 'categories',
         component: OrderCategoriesComponent,
       },
       {
-        path: 'positions',
+        path: ':id',
         component: OrderPositionsComponent,
       },
     ],

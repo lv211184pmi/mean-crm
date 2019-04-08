@@ -4,6 +4,7 @@
         *ngIf="categories?.length; else empty">
         <div
             class="card waves-effect pointer"
+            [routerLink]="['/order', category._id]"
             *ngFor="let category of categories">
             <div class="center">
                 <img
