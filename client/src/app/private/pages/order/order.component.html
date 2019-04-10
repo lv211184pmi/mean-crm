@@ -1,8 +1,14 @@
 <div class="page-title">
-    <h4>Order</h4>
+    <h4 *ngIf="isRoot">Order</h4>
+    <h4 *ngIf="!isRoot">
+        <a [routerLink]="['/order']">Order</a>
+        <i class="material-icons">keyboard_arrow_right</i>
+        Add Goods
+    </h4>
     <button
-        class="waves-effect btn grey darken-1 modal-trigger"
-        data-target="explore-order">
+        class="waves-effect btn grey darken-1"
+        [disabled]="!orderList?.length"
+        (click)="openModal()">
         Finish
     </button>
 </div>
@@ -10,7 +16,7 @@
 <router-outlet></router-outlet>
 
 <div
-    id="explore-order"
+    #modal
     class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4 class="mb1">Your order</h4>
@@ -25,29 +31,16 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>3</td>
-                    <td>$0.87</td>
+                <tr *ngFor="let item of orderList">
+                    <td>{{ item?.name }}</td>
+                    <td>{{ item?.quantity }}</td>
+                    <td>${{ item?.cost }}</td>
                     <td>
-                        <i class="material-icons pointer">delete</i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>1</td>
-                    <td>$3.76</td>
-                    <td>
-                        <i class="material-icons pointer">delete</i>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>2</td>
-                    <td>$7.00</td>
-                    <td>
-                        <i class="material-icons pointer">delete</i>
+                        <i
+                            class="material-icons pointer"
+                            (click)="removePosition(item)">
+                            delete
+                        </i>
                     </td>
                 </tr>
             </tbody>
@@ -55,16 +48,22 @@
         <div class="order-summary">
             <p>
                 Total
-                <strong>22 231 USD.</strong>
+                <strong>{{ total }} USD.</strong>
             </p>
         </div>
     </div>
     <div class="modal-footer">
-        <a
-            href="#!"
-            class="modal-action waves-effect waves-black btn-flat">
+        <button
+            class="modal-action waves-effect waves-black btn-flat"
+            [disabled]="pending"
+            (click)="cancel()">
             Cancel
-        </a>
-        <button class="modal-action btn waves-effect">Approve</button>
+        </button>
+        <button
+            class="modal-action btn waves-effect"
+            [disabled]="!orderList?.length || pending"
+            (click)="submit()">
+            Approve
+        </button>
     </div>
 </div>
