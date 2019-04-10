@@ -181,3 +181,12 @@ input.ng-touched.ng-invalid {
 .h200 {
   max-height: 200px !important;
 }
+
+.filter--btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter--btns button:first-child {
+  margin-bottom: 10px;
+}

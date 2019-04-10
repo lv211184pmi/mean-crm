@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { MaterialService } from '../material-utils/material.service';
 import { Category } from '../../models/assortment/category.model';
-import { Message } from '../../models/message.model';
+import { Message } from '../../models/shared/message.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {

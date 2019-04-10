@@ -12,9 +12,9 @@ import { HistoryFilterComponent } from './components/history-filter/history-filt
     RouterModule.forChild([{ path: '', component: HistoryComponent }]),
   ],
   declarations: [
-    HistoryListComponent,
-    HistoryFilterComponent,
-    HistoryComponent,
+    // HistoryListComponent,
+    // HistoryFilterComponent,
+    // HistoryComponent,
   ],
 })
 export class HistoryModule {}
