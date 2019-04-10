@@ -1,16 +1,20 @@
-const express = require('express');
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
 const mongoose = require('mongoose');
 const passport = require('passport')
-const authRoutes = require('./routes/auth');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
-const analyticsRoutes = require('./routes/analytics');
-const categoryRoutes = require('./routes/category');
-const orderRoutes = require('./routes/order');
-const positionRoutes = require('./routes/position');
-const keys = require('./config/keys');
-const app = express();
+const authRoutes = require('./routes/auth')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const morgan = require('morgan')
+
+const analyticsRoutes = require('./routes/analytics')
+const categoryRoutes = require('./routes/category')
+const orderRoutes = require('./routes/order')
+const positionRoutes = require('./routes/position')
+const keys = require('./config/keys')
+const gqlSchema = require('./graphql/schema')
+const gqlResolver = require('./graphql/resolvers')
+const app = express()
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
     .then(() => {
@@ -23,6 +27,12 @@ mongoose.set("useCreateIndex", true);
 
 app.use(passport.initialize())
 require('./middleware/passport')(passport)
+
+app.use('/graphql', graphqlHTTP({
+    schema: gqlSchema,
+    rootValue: gqlResolver,
+    graphiql: true
+}))
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'))

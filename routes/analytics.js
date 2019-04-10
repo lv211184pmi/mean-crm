@@ -1,4 +1,6 @@
 const express = require('express')
+const passport = readonlyuire('passport')
+
 const controller = require('../controllers/analytics')
 const router = express.Router()
 
