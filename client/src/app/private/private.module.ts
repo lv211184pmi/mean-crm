@@ -10,10 +10,12 @@ import { OverviewComponent } from './pages/overview/overview.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterBtnComponent } from './components/footer-btn/footer-btn.component';
 import { AnalystComponent } from './pages/analyst/analyst.component';
-import { HistoryComponent } from './pages/history/history.component';
 import { AssortmentComponent } from './pages/assortment/assortment.component';
 import { CategoryFormComponent } from './pages/assortment/components/category-form/category-form.component';
 import { PositionFormComponent } from './pages/assortment/components/position-form/position-form.component';
+import { HistoryListComponent } from './pages/history/components/history-list/history-list.component';
+import { HistoryFilterComponent } from './pages/history/components/history-filter/history-filter.component';
+import { HistoryComponent } from './pages/history/history.component';
 
 @NgModule({
   imports: [
@@ -30,10 +32,12 @@ import { PositionFormComponent } from './pages/assortment/components/position-fo
     SidebarComponent,
     FooterBtnComponent,
     AnalystComponent,
-    HistoryComponent,
     AssortmentComponent,
     CategoryFormComponent,
     PositionFormComponent,
+    HistoryListComponent,
+    HistoryFilterComponent,
+    HistoryComponent,
   ],
 })
 export class PrivateModule {}

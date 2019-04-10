@@ -29,6 +29,7 @@ const routes: Routes = [
       {
         path: 'history',
         component: HistoryComponent,
+        // loadChildren: './pages/history/history.module#HistoryModule',
       },
       {
         path: 'order',

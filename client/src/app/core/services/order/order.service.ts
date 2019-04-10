@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
@@ -22,6 +22,14 @@ export class OrderService {
       }),
       catchError(err => this.errorHandle(err)),
     );
+  }
+
+  public getOrder(params: any = {}): Observable<Order[]> {
+    return this.http
+      .get<Order[]>(`${this.host}/order`, {
+        params: new HttpParams({ fromObject: params }),
+      })
+      .pipe(catchError(err => this.errorHandle(err)));
   }
 
   private errorHandle(err): Observable<any> {
