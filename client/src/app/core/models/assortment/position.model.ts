@@ -4,6 +4,7 @@ export class Position {
   category: string;
   user?: string;
   _id: string;
+  quantity?: number;
 
   constructor(values: any = {}) {
     Object.assign(this, values);
