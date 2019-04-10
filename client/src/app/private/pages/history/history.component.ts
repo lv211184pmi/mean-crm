@@ -40,6 +40,7 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('tooltipOpen') tooltipOpenRef: ElementRef;
   @ViewChild('tooltipClear') tooltipClearRef: ElementRef;
+
   constructor(private orderService: OrderService) {}
 
   ngOnInit() {
