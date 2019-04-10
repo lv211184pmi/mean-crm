@@ -53,8 +53,10 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.tooltipClear) {
+      this.tooltipClear.destroy();
+    }
     this.tooltipOpen.destroy();
-    this.tooltipClear.destroy();
     this.sub.unsubscribe();
   }
 
