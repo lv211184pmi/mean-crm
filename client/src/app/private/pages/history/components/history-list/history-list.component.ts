@@ -7,7 +7,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { Order } from '../../../../../core/models/order/order.mode';
+import { Order } from '../../../../../core/models/order/order.model';
 import {
   MaterialInstance,
   MaterialService,

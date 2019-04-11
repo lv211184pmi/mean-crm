@@ -13,7 +13,7 @@ import {
   MaterialService,
 } from '../../../core/services/material-utils/material.service';
 import { OrderService } from '../../../core/services/order/order.service';
-import { Order } from '../../../core/models/order/order.mode';
+import { Order } from '../../../core/models/order/order.model';
 import { Filter } from '../../../core/models/shared/filter.model';
 
 const STEP = 2;
@@ -53,8 +53,10 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.tooltipClear) {
+      this.tooltipClear.destroy();
+    }
     this.tooltipOpen.destroy();
-    this.tooltipClear.destroy();
     this.sub.unsubscribe();
   }
 
