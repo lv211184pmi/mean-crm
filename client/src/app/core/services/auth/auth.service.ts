@@ -20,7 +20,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  public logout() {
+  public logout(): void {
     this.setToken(null);
     localStorage.clear();
     this.router.navigate(['/auth/login']);

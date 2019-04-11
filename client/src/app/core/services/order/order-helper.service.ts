@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Position } from '../../models/assortment/position.model';
-import { OrderPosition } from '../../models/order/order.mode';
+import { OrderPosition } from '../../models/order/order.model';
 
 @Injectable({ providedIn: 'root' })
 export class OrderHelperService {
