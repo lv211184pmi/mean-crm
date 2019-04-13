@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ChatModule } from './components/chat/chat.module';
 import { SharedModule } from '../core/shared/shared.module';
 import { PrivateComponent } from './private.component';
 import { PrivateRoutingModule } from './private-routing.module';
@@ -25,6 +26,7 @@ import { HistoryComponent } from './pages/history/history.component';
     ReactiveFormsModule,
     RouterModule,
     SharedModule,
+    ChatModule,
   ],
   declarations: [
     PrivateComponent,

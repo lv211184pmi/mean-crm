@@ -1,39 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { Order } from '../../models/order/order.mode';
-import { environment } from '../../../../environments/environment';
+import { Order } from '../../models/order/order.model';
 import { MaterialService } from '../material-utils/material.service';
+import { GlobalService } from '../global.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  private host = `${environment.host}/api`;
   private alert = MaterialService.alert;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private gs: GlobalService) {}
 
   public createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${this.host}/order`, order).pipe(
+    return this.http.post<Order>(`${this.gs.host}/order`, order).pipe(
       map((newOrder: Order) => {
         this.alert(`Order №${newOrder.order} was created successfully.`);
         return newOrder;
       }),
-      catchError(err => this.errorHandle(err)),
+      catchError(err => this.gs.errorHandler(err)),
     );
   }
 
   public getOrder(params: any = {}): Observable<Order[]> {
     return this.http
-      .get<Order[]>(`${this.host}/order`, {
+      .get<Order[]>(`${this.gs.host}/order`, {
         params: new HttpParams({ fromObject: params }),
       })
-      .pipe(catchError(err => this.errorHandle(err)));
-  }
-
-  private errorHandle(err): Observable<any> {
-    this.alert(err.error.message);
-    return throwError(err);
+      .pipe(catchError(err => this.gs.errorHandler(err)));
   }
 }

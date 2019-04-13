@@ -14,7 +14,7 @@ import {
   MaterialInstance,
 } from '../../../core/services/material-utils/material.service';
 import { OrderHelperService } from '../../../core/services/order/order-helper.service';
-import { OrderPosition, Order } from '../../../core/models/order/order.mode';
+import { OrderPosition, Order } from '../../../core/models/order/order.model';
 import { OrderService } from '../../../core/services/order/order.service';
 
 @Component({

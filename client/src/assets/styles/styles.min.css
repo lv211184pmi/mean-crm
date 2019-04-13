@@ -181,3 +181,40 @@ input.ng-touched.ng-invalid {
 .h200 {
   max-height: 200px !important;
 }
+
+.filter--btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter--btns button:first-child {
+  margin-bottom: 10px;
+}
+.btn-floating.btn-large {
+  width: 50px;
+  height: 50px;
+}
+
+.btn-floating.btn-large i {
+  line-height: 50px;
+}
+
+.fixed-action-btn ul {
+  padding-right: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
