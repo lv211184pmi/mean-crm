@@ -11,9 +11,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  private botToken: string = environment.token;
   constructor(private auth: AuthService, private router: Router) {}
 
   intercept(
@@ -24,6 +26,13 @@ export class TokenInterceptor implements HttpInterceptor {
       req = req.clone({
         setHeaders: {
           Authorization: this.auth.getToken(),
+        },
+      });
+    }
+    if (req.url.includes('dialogflow')) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.botToken}`,
         },
       });
     }

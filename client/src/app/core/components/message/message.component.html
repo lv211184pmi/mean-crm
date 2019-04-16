@@ -1,0 +1,11 @@
+<li class="list-group-item">
+  <div class="incoming_msg_img">
+    <img src="https://ptetutorials.com/images/user-profile.png" alt="img">
+    <div class="received_msg">
+      <div class="received_withd_msg">
+        <p>{{ message.content }}</p>
+        <span class="time_date">{{ message.timestamp | date : 'dd/MM/yyyy' }}</span>
+      </div>
+    </div>
+  </div>
+</li>

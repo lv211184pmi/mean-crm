@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  token: '4b30c30a7c6b4582b7dd0ff4fba5ca61',
   client: 'http://localhost:4200',
   host: 'http://localhost:3000',
 };
