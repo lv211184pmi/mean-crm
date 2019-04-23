@@ -24,7 +24,7 @@ import {
 })
 export class HistoryFilterComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  @Input() clearFilter: Observable<void>;
+  @Input() clearFilter: Observable<void> = new Observable(null);
   @Output() emitFilter: EventEmitter<Filter> = new EventEmitter();
   @ViewChild('start') startRef: ElementRef;
   @ViewChild('end') endRef: ElementRef;

@@ -1,3 +1,4 @@
+import { MessageComponent } from './../message/message.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MessageListComponent } from './message-list.component';
@@ -8,9 +9,8 @@ describe('MessageListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageListComponent ]
-    })
-    .compileComponents();
+      declarations: [MessageListComponent, MessageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

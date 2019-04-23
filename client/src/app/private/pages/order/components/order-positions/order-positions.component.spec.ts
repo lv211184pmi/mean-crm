@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { OrderPositionsComponent } from './order-positions.component';
+import { LoaderComponent } from '../../../../../private/components/loader/loader.component';
 
 describe('OrderPositionsComponent', () => {
   let component: OrderPositionsComponent;
@@ -8,9 +12,9 @@ describe('OrderPositionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderPositionsComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, RouterTestingModule, HttpClientModule],
+      declarations: [OrderPositionsComponent, LoaderComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

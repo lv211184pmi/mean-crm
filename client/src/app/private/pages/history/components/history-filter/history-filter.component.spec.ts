@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { HistoryFilterComponent } from './history-filter.component';
 
@@ -8,9 +9,9 @@ describe('HistoryFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HistoryFilterComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule],
+      declarations: [HistoryFilterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

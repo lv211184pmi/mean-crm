@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { OverviewComponent } from './overview.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -8,9 +10,9 @@ describe('OverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OverviewComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientModule],
+      declarations: [OverviewComponent, LoaderComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

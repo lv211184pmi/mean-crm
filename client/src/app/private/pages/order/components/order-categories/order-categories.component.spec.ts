@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { OrderCategoriesComponent } from './order-categories.component';
+import { LoaderComponent } from '../../../../../private/components/loader/loader.component';
 
 describe('OrderCategoriesComponent', () => {
   let component: OrderCategoriesComponent;
@@ -8,9 +11,9 @@ describe('OrderCategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderCategoriesComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, HttpClientModule],
+      declarations: [OrderCategoriesComponent, LoaderComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

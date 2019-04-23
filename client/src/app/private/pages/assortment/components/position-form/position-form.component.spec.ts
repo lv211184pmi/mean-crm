@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { PositionFormComponent } from './position-form.component';
+import { LoaderComponent } from '../../../../../private/components/loader/loader.component';
 
 describe('PositionFormComponent', () => {
   let component: PositionFormComponent;
@@ -8,9 +11,9 @@ describe('PositionFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PositionFormComponent ]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [PositionFormComponent, LoaderComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

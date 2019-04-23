@@ -1,6 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatComponent } from './chat.component';
+import { MessageListComponent } from '../../../core/components/message-list/message-list.component';
+import { DialogflowService } from './../../../core/services/chat/chatbot.service';
+import { MessageComponent } from './../../../core/components/message/message.component';
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -8,9 +12,10 @@ describe('ChatComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientModule],
+      declarations: [ChatComponent, MessageListComponent, MessageComponent],
+      providers: [DialogflowService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
