@@ -8,7 +8,6 @@ import { MaterialService } from '../../../core/services/material-utils/material.
 })
 export class FooterBtnComponent implements AfterViewInit {
   @ViewChild('floating') floatingBtn: ElementRef;
-  constructor() {}
 
   ngAfterViewInit() {
     MaterialService.initFloatingBtn(this.floatingBtn);

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs/operators';
+import { BotMessage } from '../../models/chat/bot-message';
+import { Message } from '../../models/chat/message.model';
 
 @Injectable({ providedIn: 'root' })
 export class DialogflowService {
@@ -11,13 +13,8 @@ export class DialogflowService {
 
   constructor(private http: HttpClient) {}
 
-  public getResponse(query: string) {
+  public getResponse(query: string): Observable<Message> {
     const data = {
-      query: query,
-      lang: 'en',
-      sessionId: '12345',
-    };
-    const test = {
       contexts: ['shop'],
       lang: 'en',
       query,
@@ -25,12 +22,15 @@ export class DialogflowService {
       timezone: 'America/New_York',
     };
 
-    return this.http.post(`${this.baseURL}`, test);
-    // .pipe(
-    //   map(res => {
-    //     return res.json();
-    //   }),
-    // );
+    return this.http.post<BotMessage>(`${this.baseURL}`, data).pipe(
+      map(
+        res =>
+          new Message({
+            content: res.result.fulfillment.speech,
+            timestamp: res.timestamp,
+          }),
+      ),
+    );
   }
 
   public getHeaders(): HttpHeaders {

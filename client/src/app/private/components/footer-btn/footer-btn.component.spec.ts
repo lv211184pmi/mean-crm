@@ -23,4 +23,8 @@ describe('FooterBtnComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render button', () => {
+    expect(component.floatingBtn).toBeTruthy();
+  });
 });
